@@ -11,4 +11,12 @@ public:
 			m[i] = new int[row];
 		}
 	}
-	void setMap(
+	void setMap(int **M){
+		for(int i = 0;i<col;i++){
+			for(int j=0j<row;j++){
+				m[i][j] = M[i][j];
+			}
+		}
+	}
+
+}
