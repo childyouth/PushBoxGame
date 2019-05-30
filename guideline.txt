@@ -1,0 +1,52 @@
+game makegame(int level)
+	WINDOW *win = newwin( * * * * );
+	return new game(level, win)
+	
+
+class point{
+public:
+	int x;
+	int y;
+	point(int _x,int _y):x(_x),y(_y){}
+}
+
+int maps[][][] = [[******]...[******]] ... //박스와 박스놓을곳과 캐릭터 <- 이것들이 없는 맵
+int boxes[][][] = [[*,*]...[*,*]]... //박스 좌표.
+int chrs[][2] = [[*,*] ... [*,*]]... //캐릭터 좌표.
+int boxes_to[][][] = 		 // 박스 도착 좌표.
+
+
+class map{
+public:
+	int m[10][10];
+	int m_y;
+	int m_x;
+	int b[][2];
+	int b_y;
+	int b_x;
+	int c[2];
+	int b_to[][2];
+	int b_to_x;
+	int b_to_y;
+	map(int lvl){
+		int m_y = sizeof(maps[lvl])/sizeof(maps[lvl][0]);
+		int m_x = sizeof(maps[lvl][0])/sizeof(maps[lvl][0][0]);
+		int b_y = sizeof(boxes[lvl])/sizeof(boxes[lvl][0]);
+		int b_x = sizeof(boxes[lvl][0])/sizeof(boxes[lvl][0][0]);
+		int b_to_y = sizeof(boxes_to[lvl])/sizeof(boxes_of[lvl][0]);
+		int b_to_x = sizeof(boxes_to[lvl][0])/sizeof(boxes_to[lvl][0][0]);
+		for...
+			...
+
+
+class game{
+public:
+	WINDOW *win;
+	int level;
+	map m;
+	void move(int x,int y);	// 요소의 좌표임.
+	game(int lvl):level(lvl){
+		win = newwin( *  * * *);
+		m = new map(lvl);
+	}
+}
