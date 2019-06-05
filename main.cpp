@@ -1,5 +1,5 @@
 #include<ncurses.h>
-
+#include "map.h"
 #define WIN_SIZE_Y 18
 #define WIN_SIZE_X 78
 
@@ -79,5 +79,6 @@ int main(){
 	refresh();
 	getch();
 	endwin();
+	map m();
 	return 0;
 }
