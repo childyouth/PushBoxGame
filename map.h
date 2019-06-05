@@ -1,22 +1,22 @@
 #ifndef MAP_H
 #define MAP_H
-
-class map{
+#include <iostream>
+#include <fstream>
+using namespace std;
+/****************
+map클래스
+벽 1
+상자 2
+목적지 3
+바깥 4
+****************/
+class map
+{
 public:
-	int col,row;
+	int col, row;
 	int **m;
-	map(int c,int r):col(c),row(r){
-		**m = new int*[col];
-		for(int i = 0;i<col;i++){
-			m[i] = new int[row];
-		}
-	}
-	void setMap(int **M){
-		for(int i = 0;i<col;i++){
-			for(int j=0j<row;j++){
-				m[i][j] = M[i][j];
-			}
-		}
-	}
-
-}
+	map(int c, int r);
+	void setMap(char filename[]);
+	void checkMapData();
+};
+#endif
