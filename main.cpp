@@ -75,10 +75,9 @@ int main(){
 				x++;break;
 		}
 	}
-
+	
 	refresh();
 	getch();
 	endwin();
-	map m();
 	return 0;
 }

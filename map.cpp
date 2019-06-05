@@ -42,7 +42,7 @@ void map::initMap()
 
         cout << "row : " << row << " col : " << col << endl;
         if(i==0){ // map 초기화
-            maps.assign(num_maps, vector<vector<int>>(row, vector<int>(col, 0)));
+            maps.assign(num_maps, vector<vector<int> >(row, vector<int>(col, 0)));
         }
         setMap(i, col, row, line);
     }
@@ -50,7 +50,7 @@ void map::initMap()
 
 void map::setMap(int level, int col, int row, vector<string> temp) {
     string tempString;
-    vector<vector<int>> &map = maps[level];
+    vector<vector<int> > &map = maps[level];
     for (int i = 0; i < temp.size(); i++)
     {
         stringstream stream;
@@ -58,7 +58,7 @@ void map::setMap(int level, int col, int row, vector<string> temp) {
         int idx = 0;
         while(stream >> tempString){
             if (tempString != " ") {
-                int n = stoi(tempString);
+                int n = atoi(tempString.c_str());
                 map[i][idx] = n;
                 idx++;
             }
@@ -66,7 +66,7 @@ void map::setMap(int level, int col, int row, vector<string> temp) {
     }
 }
 
-vector<vector<int>> map::getMap(int level)
+vector<vector<int> > map::getMap(int level)
 {
     return maps[level];
 }
@@ -88,7 +88,7 @@ int map::getMapNum()
 
 void map::checkMapData(int level)
 {
-    vector<vector<int>> map = maps[level];
+    vector<vector<int> > map = maps[level];
     Point map_size = map_sizes[level];
     for (int row = 0; row < map_size.row; row++)
     {
