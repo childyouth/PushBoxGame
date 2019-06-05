@@ -100,13 +100,13 @@ void map::checkMapData(int level)
     }
 }
 
-int main()
-{
-    map m;
-    m.initMap();
-    int times = m.getMapNum();
-    for(int i=0; i<times; i++){
-        m.checkMapData(i);
-        cout << endl;
-    }
-}
+// int main()
+// {
+//     map m;
+//     m.initMap();
+//     int times = m.getMapNum();
+//     for(int i=0; i<times; i++){
+//         m.checkMapData(i);
+//         cout << endl;
+//     }
+// }
