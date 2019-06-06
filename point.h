@@ -2,10 +2,11 @@
 #define POINT_H
 
 class point{
-		friend class map;
-		int col, row;
+    public:
+		int col=0, row=0;
 		point(){}
 		point(int _col, int _row){col = _col; row=_row;}
+		void setPoint(int _col, int _row){col = _col; row=_row;}
 };
 
 #endif
