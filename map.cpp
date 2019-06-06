@@ -12,8 +12,8 @@ void map::initMap()
     int c_col, c_row;   // 캐릭터 위치 정보
     char start_symbol;  // @
 
-    chracters = new Point[num_maps]; // 캐릭터 위치 배열
-    map_sizes = new Point[num_maps]; // 맵 사이즈 배열
+    chracters = new point[num_maps]; // 캐릭터 위치 배열
+    map_sizes = new point[num_maps]; // 맵 사이즈 배열
     vector<string> line;           // 줄별로 받아온 데이터
     
     for (int i = 0; i < num_maps; i++)
@@ -24,7 +24,7 @@ void map::initMap()
         getline(reader, temp);
         c_col = temp[0];
         c_row = temp[2];
-        chracters[i] = Point(c_col, c_row);
+        chracters[i] = point(c_col, c_row);
 
         while (1) {
             getline(reader, temp);
@@ -38,7 +38,7 @@ void map::initMap()
         line.pop_back(); // 맵 구분자를 벡터에서 제거
         row = line.size(); // 줄 수
         col = line[0].size() / 2 + 1; // 공백 제거
-        map_sizes[i] = Point(col, row);
+        map_sizes[i] = point(col, row);
 
         cout << "row : " << row << " col : " << col << endl;
         if(i==0){ // map 초기화
@@ -71,12 +71,12 @@ vector<vector<int> > map::getMap(int level)
     return maps[level];
 }
 
-Point map::getChracter(int level)
+point map::getChracter(int level)
 {
     return map_sizes[level];
 }
 
-Point map::getMapSize(int level)
+point map::getMapSize(int level)
 {
     return chracters[level];
 }
@@ -89,7 +89,7 @@ int map::getMapNum()
 void map::checkMapData(int level)
 {
     vector<vector<int> > map = maps[level];
-    Point map_size = map_sizes[level];
+    point map_size = map_sizes[level];
     for (int row = 0; row < map_size.row; row++)
     {
         for (int col = 0; col < map_size.col; col++)
