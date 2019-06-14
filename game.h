@@ -4,6 +4,9 @@
 #include "point.h"
 #include <ncurses.h>
 
+#define IN_WINDOW_X 3
+#define IN_WINDOW_Y 4
+
 using namespace std;
 
 class game{
@@ -25,6 +28,7 @@ public:
     void drawMap(); 
     void drawCharacter();
     void drawBoxs(){} // 미구현
+    void drawDestination(){} // 미구현 Complete박스도 같이 담당
     void levelUp();
     point getCharater();
     
@@ -32,10 +36,13 @@ public:
     void endGame();
     bool isStageEnd();
     bool isGameEnd();
-
+    int getMapNum();
+    int getLevel();
+    
+    void setWindow(WINDOW *&another);
     // 테스트 기능 - 캐릭터가 움직인 자리에 0을 채워넣음
     void fillBeforeCharacter(){
-        mvwprintw(win, beforeCharacter.row+2, beforeCharacter.col+3, "0");
+        mvwprintw(win, beforeCharacter.row+IN_WINDOW_Y, beforeCharacter.col+IN_WINDOW_X, "0");
         beforeCharacter = point(character.col, character.row);
     }
     // 테스트 기능 - 캐릭터의 좌표를 바꿈
