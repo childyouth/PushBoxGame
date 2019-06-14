@@ -1,29 +1,25 @@
 #include "game.h"
+#define IN_WINDOW_X 3
+#define IN_WINDOW_Y 2
 
-#define WIN_SIZE_Y 18
-#define WIN_SIZE_X 78
-
-game::game() {
-    win = newwin(78, 18, 1, 1); // 윈도우 설정
-    maps.initMap(); // 맵 세팅
-    maxLevel = maps.getMapNum();
-}
 game::game(WINDOW *&win) {
     this->win = win; // 윈도우 설정
     maps.initMap(); // 맵 세팅
     maxLevel = maps.getMapNum();
 }
-void game::move(int x, int y){
-    this->character.setPoint(x, y);
-}
-void game::newGame(){
+
+void game::newStage(int level){
     // 데이터 셋
     if (level >= maxLevel) {
-        cout << "최대 맵 개수" << maxLevel;
+        char msg[] = "마지막 레벨입니다.";
+        mvwprintw(win, IN_WINDOW_Y, IN_WINDOW_X, msg);
+        gameEnd = true;
         return;
     }
+    stageEnd = false;
     size = maps.getMapSize(level);
     character = maps.getChracter(level);
+    beforeCharacter = maps.getChracter(level);
     currentMap = maps.getMap(level);
 }
 
@@ -35,16 +31,24 @@ void game::drawMap(){
         for(int col=0;col<size.col;col++){
         // cout << "row : " << size.row << " col : " << size.col << endl;
             sprintf(ctemp, "%d", currentMap[row][col]);
-            mvwprintw(win, row+2, col+6, ctemp);
+            mvwprintw(win, row+IN_WINDOW_Y, col+IN_WINDOW_X, ctemp);
         }
-    }   
+    }
+
+    drawCharacter();
+    drawBoxs();  
 }
-
-
-
+void game::drawCharacter(){
+    mvwprintw(win, character.row+IN_WINDOW_Y, character.col+IN_WINDOW_X, "@");
+}
 void game::levelUp(){
     level++;
+    this->newStage(level);
 }
+void game::endStage(){ stageEnd = true; }
+void game::endGame(){ gameEnd = true; }
+bool game::isStageEnd(){ return stageEnd; }
+bool game::isGameEnd(){ return gameEnd; }
 
 point game::getCharater(){
     return character;
