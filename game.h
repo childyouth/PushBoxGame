@@ -35,7 +35,6 @@ public:
     void endGame();
     bool isStageEnd();
     bool isGameEnd();
-
     int getMapNum();
     int getLevel();
     

@@ -69,6 +69,7 @@ void map::setMap(int level, int col, int row, vector<string> temp) {
 				else if (n == 2) {
 					tmp.push_back(GameObject(i, idx, 0, true));
 					GameObject::boxes.push_back(GameObject(i, idx, 2, true));
+					n = 0;
 				}
 				else {
 					if (n == 3)

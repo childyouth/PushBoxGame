@@ -158,13 +158,13 @@ void gameLoop(){
 
 		switch(key){
 			case KEY_LEFT:
-				character.move(--c_x, c_y);break;
+				character.move(4,1);break;
 			case KEY_RIGHT:
-				character.move(++c_x, c_y);break;
+				character.move(3,1);break;
 			case KEY_UP:
-				character.move(c_x, --c_y);break;
+				character.move(2,1);break;
 			case KEY_DOWN:
-				character.move(c_x, ++c_y);break;
+				character.move(1,1);break;
 			case 'p':
 				show_pause_screen(gamescreen);break;
 		}
