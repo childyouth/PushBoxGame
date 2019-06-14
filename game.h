@@ -4,6 +4,9 @@
 #include "point.h"
 #include <ncurses.h>
 
+#define IN_WINDOW_X 3
+#define IN_WINDOW_Y 4
+
 using namespace std;
 
 class game{
@@ -33,6 +36,10 @@ public:
     bool isStageEnd();
     bool isGameEnd();
 
+    int getMapNum();
+    int getLevel();
+    
+    void setWindow(WINDOW *&another);
 };
 
 #endif
