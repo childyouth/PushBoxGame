@@ -4,8 +4,11 @@ LFlag=-lncurses
 
 all:pushbox
 
-pushbox:map.o game.o main.o
-	$(CC) -o pushbox map.o game.o main.o $(LFlag)
+pushbox:gameobject.o map.o game.o main.o
+	$(CC) -o pushbox gameobject.o map.o game.o main.o $(LFlag)
+
+gameobject.o: gameobject.cpp gameobject.h
+	$(CC) -c -o gameobject.o gameobject.cpp $(LFlag)
 
 map.o: map.cpp map.h 
 	$(CC) -c -o map.o map.cpp $(LFlag)

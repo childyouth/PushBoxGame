@@ -152,19 +152,19 @@ void gameStart(int prefix){
 void gameLoop(){
 	int a =0;
 	GameObject character = g.getCharater();
-	int c_x = character.col, c_y = character.row;
+	int c_x = character.p.col, c_y = character.p.row;
 	while(!g.isStageEnd()){
 		int key = getch();
 
 		switch(key){
 			case KEY_LEFT:
-				g.move(--c_x, c_y);break;
+				character.move(--c_x, c_y);break;
 			case KEY_RIGHT:
-				g.move(++c_x, c_y);break;
+				character.move(++c_x, c_y);break;
 			case KEY_UP:
-				g.move(c_x, --c_y);break;
+				character.move(c_x, --c_y);break;
 			case KEY_DOWN:
-				g.move(c_x, ++c_y);break;
+				character.move(c_x, ++c_y);break;
 			case 'p':
 				show_pause_screen(gamescreen);break;
 		}
@@ -223,7 +223,7 @@ void draw(WINDOW *win){
 	wattroff(win, COLOR_PAIR(17));
 
 	wattron(win, COLOR_PAIR(18));
-	g.drawDestination();
+	//g.drawDestination();
 	wattroff(win, COLOR_PAIR(18));
 
 	wattron(win, COLOR_PAIR(15));

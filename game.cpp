@@ -38,12 +38,12 @@ void game::drawMap(){
 }
 void game::drawBoxs() {
 	for (int i = 0; i < GameObject::boxes.size(); i++) {
-		mvwprintw(win, GameObject::boxes[i].point.y + IN_WINDOW_Y
-			, GameObject::boxes[i].point.x + IN_WINDOW_X, 2);
+		mvwprintw(win, GameObject::boxes[i].p.row + IN_WINDOW_Y
+			, GameObject::boxes[i].p.col + IN_WINDOW_X, "2");
 	}
 }
 void game::drawCharacter(){
-    mvwprintw(win, character.row+IN_WINDOW_Y, character.col+IN_WINDOW_X, "@");
+    mvwprintw(win, character.p.row+IN_WINDOW_Y, character.p.col+IN_WINDOW_X, "@");
 }
 void game::levelUp(){
     level++;

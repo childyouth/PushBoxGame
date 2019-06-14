@@ -1,4 +1,5 @@
 #include "map.h"
+#include "gameobject.h"
 #include <sstream>
 // #include <algorithm>
 
@@ -67,7 +68,7 @@ void map::setMap(int level, int col, int row, vector<string> temp) {
 					tmp.push_back(GameObject(i, idx, n));
 				else if (n == 2) {
 					tmp.push_back(GameObject(i, idx, 0, true));
-					GameObject::boxes.push_back(GameObject(i, j, 2, true));
+					GameObject::boxes.push_back(GameObject(i, idx, 2, true));
 				}
 				else {
 					if (n == 3)

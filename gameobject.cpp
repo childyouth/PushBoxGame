@@ -41,8 +41,8 @@ vector<point> GameObject::dest;
 bool is_clear() {
 	for (int i = 0; i < GameObject::boxes.size(); i++) {
 		for (int j = 0; j < GameObject::dest.size(); j++) {
-			if (GameObject::dest[j].x == GameObject::boxes[i].point.x &&
-				GameObject::dest[j].y == GameObject::boxes[i].point.y) {
+			if (GameObject::dest[j].col == GameObject::boxes[i].p.col &&
+				GameObject::dest[j].row == GameObject::boxes[i].p.row) {
 				break;
 			}
 			if (j == GameObject::dest.size() - 1)

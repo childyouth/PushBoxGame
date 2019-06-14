@@ -2,9 +2,9 @@
 #define GAMEOBJECT_H
 #include<iostream>
 #include<vector>
-#include<conio.h>
+#include<ncurses.h>
 #include"point.h"
-
+using namespace std;
 class GameObject {
 public:
 	static vector<vector<GameObject> > MAP;	// ÇöÀç ¸Ê
