@@ -6,6 +6,7 @@ class point{
 		int col=0, row=0;
 		point(){}
 		point(int _col, int _row){col = _col; row=_row;}
+		point(point& p){col = p.col; row= p.row;}
 		void setPoint(int _col, int _row){col = _col; row=_row;}
 };
 
