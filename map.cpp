@@ -8,7 +8,7 @@ void map::initMap()
     string temp;
     getline(reader, temp);
     num_maps = atoi(temp.c_str());
-    cout << "맵 데이터의 수 : " << num_maps << endl;
+    // cout << "맵 데이터의 수 : " << num_maps << endl;
 
     int c_col, c_row;   // 캐릭터 위치 정보
     char start_symbol;  // @
@@ -42,7 +42,7 @@ void map::initMap()
         col = line[0].size() / 2 + 1; // 공백 제거
         map_sizes[i] = point(col, row);
 
-        cout << "row : " << map_sizes[i].row << " col : " << map_sizes[i].col << endl;
+        // cout << "row : " << map_sizes[i].row << " col : " << map_sizes[i].col << endl;
         if(i==0){ // map 초기화
             maps.assign(num_maps, vector<vector<int> >(row, vector<int>(col, 0)));
         }
