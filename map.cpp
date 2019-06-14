@@ -69,7 +69,7 @@ void map::setMap(int level, int col, int row, vector<string> temp) {
     // checkMapData(level);
 }
 
-vector<vector<int>> map::getMap(int level)
+vector<vector<int> > map::getMap(int level)
 {
     return maps[level];
 }

@@ -18,7 +18,7 @@ private:
 
     point size, character;
     point beforeCharacter;
-    vector<vector<int>> currentMap;
+    vector<vector<int> > currentMap;
 public:
     game(WINDOW*&);
     void newStage(int level=0);
