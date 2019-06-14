@@ -7,7 +7,7 @@
 void init_colors();
 void handle_menu_cursor(int key, int &y); // 메인 메뉴에서 커서 이동
 void select_this_menu(int y); // Enter입력으로 메뉴에 따른 아이템 실행
-void show_pause_screen(); // P를 눌렀을 시 Pause
+void show_pause_screen(WINDOW *win); // P를 눌렀을 시 Pause
 void gameStart(); // Main game loop로 들어감
 void gameLoop(game&);
 
@@ -18,7 +18,7 @@ int main(){
 	initscr();
 
 	gamescreen = newwin(WIN_SIZE_Y*0.5,WIN_SIZE_X,1,1);
-	pause = newwin(6,20,WIN_SIZE_Y/2 - 3, WIN_SIZE_X/2 - 10);
+	pause = newwin(6,20,WIN_SIZE_Y/3 - 6, WIN_SIZE_X/2 - 10);
 	
 	// 게임 기본 세팅
 	init_colors();
@@ -81,14 +81,14 @@ void handle_menu_cursor(int key, int &y){
 			if(y<max)y++;
 			break;
 		case 'p':
-			show_pause_screen();
+			show_pause_screen(stdscr);
 			break;
 		case 10:
 			select_this_menu(y);
 			break;
 	}	
 }
-void show_pause_screen(){
+void show_pause_screen(WINDOW *win){
 	wbkgd(pause,COLOR_PAIR(11));
 	wattron(pause,COLOR_PAIR(21));
 	mvwprintw(pause,1,1,"  Press Any KEY To\n      CONTINUE");
@@ -100,7 +100,8 @@ void show_pause_screen(){
 	getch();
 	wclear(pause);
 	wrefresh(pause);
-	touchwin(stdscr);
+	wbkgd(pause,COLOR_PAIR(9));
+	touchwin(win);
 }
 // 번호에 맞는 옵션을 실행하도록 만들세용
 void select_this_menu(int y){
@@ -154,6 +155,8 @@ void gameLoop(game &g){
 			case KEY_DOWN:
 				a++;
 				g.move(c_x, ++c_y);break;
+			case 'p':
+				show_pause_screen(gamescreen);break;
 		}
 		wattron(gamescreen, COLOR_PAIR(21));
 		g.drawCharacter();
