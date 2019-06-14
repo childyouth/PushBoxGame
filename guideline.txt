@@ -43,10 +43,9 @@ class game{
 public:
 	WINDOW *win;
 	int level;
-	map m;
+	vector<vector<vector<int>>> map = map.getMap(level);
 	void move(int x,int y);	// 요소의 좌표임.
 	game(int lvl):level(lvl){
 		win = newwin( *  * * *);
-		m = new map(lvl);
 	}
 }

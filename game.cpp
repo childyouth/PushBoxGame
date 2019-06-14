@@ -40,6 +40,8 @@ void game::drawMap(){
     }   
 }
 
+
+
 void game::levelUp(){
     level++;
 }
