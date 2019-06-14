@@ -82,8 +82,10 @@ void handle_menu_cursor(int key, int &y){
 			break;
 		case 'p':
 			show_pause_screen();
+			break;
 		case 10:
 			select_this_menu(y);
+			break;
 	}	
 }
 void show_pause_screen(){
