@@ -19,7 +19,6 @@ void game::newStage(int level){
     stageEnd = false;
     size = maps.getMapSize(level);
     character = maps.getChracter(level);
-    beforeCharacter = maps.getChracter(level);
     currentMap = maps.getMap(level);
 }
 
@@ -35,8 +34,14 @@ void game::drawMap(){
         }
     }
 
-    drawCharacter();
     drawBoxs();  
+    drawCharacter();
+}
+void game::drawBoxs() {
+	for (int i = 0; i < GameObject::boxes.size(); i++) {
+		mvwprintw(win, GameObject::boxes[i].point.y + IN_WINDOW_Y
+			, GameObject::boxes[i].point.x + IN_WINDOW_X, 2);
+	}
 }
 void game::drawCharacter(){
     mvwprintw(win, character.row+IN_WINDOW_Y, character.col+IN_WINDOW_X, "@");
@@ -50,6 +55,6 @@ void game::endGame(){ gameEnd = true; }
 bool game::isStageEnd(){ return stageEnd; }
 bool game::isGameEnd(){ return gameEnd; }
 
-point game::getCharater(){
+GameObject game::getCharater(){
     return character;
 }

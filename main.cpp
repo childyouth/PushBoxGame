@@ -1,6 +1,7 @@
 #include<ncurses.h>
 #include "map.h"
 #include "game.h"
+#include "gameobject.h"
 #define WIN_SIZE_Y 40
 #define WIN_SIZE_X 50
 
@@ -131,7 +132,7 @@ void gameStart(){
 }
 void gameLoop(game &g){
 	int a =0;
-	point character = g.getCharater();
+	GameObject character = g.getCharater();
 	int c_x = character.col, c_y = character.row;
 	while(!g.isStageEnd()){
 		int key = getch();
@@ -162,7 +163,6 @@ void gameLoop(game &g){
 		g.drawCharacter();
 		wattroff(gamescreen, COLOR_PAIR(21));
 		wattron(gamescreen, COLOR_PAIR(3));
-		g.fillBeforeCharacter();
 		wattroff(gamescreen, COLOR_PAIR(3));
 		wrefresh(gamescreen);
 	}
