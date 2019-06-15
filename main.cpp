@@ -161,16 +161,17 @@ void gameLoop(){
 	while(!g.isStageEnd()){
 		GameObject *character = &g.getCharater();
 		int key = getch();
-
+		int move_cnt = g.move_cnt;
+		int v = 0;
 		switch(key){
 			case KEY_LEFT:
-				character->move(4,1);break;
+				v = 4;break;
 			case KEY_RIGHT:
-				character->move(3,1);break;
+				v = 3;break;
 			case KEY_UP:
-				character->move(2,1);break;
+				v = 2;break;
 			case KEY_DOWN:
-				character->move(1,1);break;
+				v = 1;break;
 			case 'p':
 				show_pause_screen(gamescreen);break;
 			case 'q':
@@ -180,8 +181,16 @@ void gameLoop(){
 		}
 		wclear(gamescreen);
 		lobbyFixedString();
+		if(v != 0){
+			if(character->move(v,1) != -1)
+				move_cnt ++;
+		}
+		g.move_cnt = move_cnt;
+		sprintf(temp,"%d",move_cnt);
+		
 		draw(gamescreen);
 		wattron(gamescreen, COLOR_PAIR(3));
+		mvwprintw(gamescreen,1,15,temp);
 		wattroff(gamescreen, COLOR_PAIR(3));
 
 		wrefresh(gamescreen);
@@ -239,7 +248,6 @@ void draw(WINDOW *win){
 	wattroff(win, COLOR_PAIR(17));
 
 	wattron(win, COLOR_PAIR(18));
-	//g.drawDestination();
 	wattroff(win, COLOR_PAIR(18));
 
 	wattron(win, COLOR_PAIR(15));
