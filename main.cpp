@@ -41,17 +41,27 @@ int main(){
 	noecho();
 	
 	// 로비 띄우기
-	int line = 4;
 	int cursor_x=3, cursor_y=4;
 	bool end = false;
 	while(1){
 		clear();
+		attron(COLOR_PAIR(1));
+		border('*','*','*','*','*','*','*','*');
+		attroff(COLOR_PAIR(1));
 		char c_y = (char)cursor_y + '0';
 		attron(COLOR_PAIR(2));
-		mvprintw(2, cursor_x, "PushBoxGame");
+		mvprintw(2, cursor_x, " PushBoxGame");
 		mvprintw(cursor_y, cursor_x, ">");
+		if(cursor_y == 4)
+		attron(COLOR_PAIR(4));
+		else attron(COLOR_PAIR(2));
 		mvprintw(4, 4, "start game");
+		if(cursor_y == 5)
+		attron(COLOR_PAIR(4));
+		else attron(COLOR_PAIR(2));
 		mvprintw(5, 4, "Choose Level");
+		attroff(COLOR_PAIR(4));
+		
 		attroff(COLOR_PAIR(2));
 		refresh();
 		
@@ -72,6 +82,7 @@ void init_colors(){
 	init_pair(1, COLOR_MAGENTA, COLOR_MAGENTA); // border color
 	init_pair(2, COLOR_BLACK, COLOR_WHITE); // char color
 	init_pair(3, COLOR_WHITE, COLOR_BLACK); // gamescreen char color
+	init_pair(4, COLOR_RED, COLOR_WHITE); // selected char color
 
 	init_pair(9, COLOR_BLACK, COLOR_BLACK); // gaem screen color
 	init_pair(10, COLOR_WHITE, COLOR_WHITE); // background color
