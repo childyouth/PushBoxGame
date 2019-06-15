@@ -1,5 +1,4 @@
 #include "map.h"
-#include "gameobject.h"
 #include <sstream>
 // #include <algorithm>
 
@@ -14,7 +13,7 @@ void map::initMap()
     int c_col, c_row;   // 캐릭터 위치 정보
     char start_symbol;  // @
 
-    chracters = new GameObject[num_maps]; // 캐릭터 위치 배열
+    chracters = new point[num_maps]; // 캐릭터 위치 배열
     map_sizes = new point[num_maps]; // 맵 사이즈 배열
     // fill(chracters, chracters+num_maps, 0);
     // fill(map_sizes, map_sizes+num_maps, 0);
@@ -28,7 +27,7 @@ void map::initMap()
         getline(reader, temp);
         c_col = temp[0] - '0';
         c_row = temp[2] - '0';
-		chracters[i] = GameObject(point(c_col, c_row), 8, true);
+        chracters[i] = point(c_col, c_row);
         while (1) {
             getline(reader, temp);
             line.push_back(temp);
@@ -56,32 +55,16 @@ void map::setMap(int level, int col, int row, vector<string> temp) {
     vector<vector<int> > &map = maps[level];
     for (int i = 0; i < temp.size(); i++)
     {
-		vector<GameObject> tmp = vector<GameObject>();
         stringstream stream;
         stream.str(temp[i]);
         int idx = 0;
         while(stream >> tempString){
             if (tempString != " ") {
                 int n = atoi(tempString.c_str());
-
-				if (n == 1 || n == 4)
-					tmp.push_back(GameObject(i, idx, n));
-				else if (n == 2) {
-					tmp.push_back(GameObject(i, idx, 0, true));
-					GameObject::boxes.push_back(GameObject(i, idx, 2, true));
-					n = 0;
-				}
-				else {
-					if (n == 3)
-						GameObject::dest.push_back(point(i, idx));
-					tmp.push_back(GameObject(i, idx, n, true));
-				}
-
                 map[i][idx] = n;
                 idx++;
             }
         }
-		GameObject::MAP.push_back(tmp);
     }
     // checkMapData(level);
 }
@@ -91,7 +74,7 @@ vector<vector<int> > map::getMap(int level)
     return maps[level];
 }
 
-GameObject map::getChracter(int level)
+point map::getChracter(int level)
 {
     return chracters[level];
 }
