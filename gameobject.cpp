@@ -34,7 +34,7 @@ int GameObject::move(int s,int c) {
 	return 0;
 }
 
-void setMAP(vector<vector<int> > currentMap) {
+void GameObject::setMAP(vector<vector<int> > currentMap) {
 	GameObject::MAP = vector<vector<GameObject> >();
 	GameObject::boxes = vector<GameObject>();
 	GameObject::dest = vector<point>();
