@@ -22,8 +22,10 @@ private:
     point size;
 	GameObject character;
     vector<vector<int> > currentMap;
+	vector<GameObject> last_box;
 public:
     int move_cnt = 0;
+	int box_move_cnt = 0;
     game(WINDOW*&);
     void newStage(int level=0);
     void drawMap(); 
@@ -38,6 +40,7 @@ public:
     bool isGameEnd();
     int getMapNum();
     int getLevel();
+	bool isBoxMoved();
     
     void setWindow(WINDOW *&another);
 };
