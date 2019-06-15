@@ -268,13 +268,11 @@ void draw(WINDOW *win){
 	g.drawBoxs();
 	wattroff(win, COLOR_PAIR(15));
 
-	
+	wattron(win, COLOR_PAIR(16));
+	g.drawCompleteBox();
+	wattroff(win, COLOR_PAIR(16));
 
 	wattron(win, COLOR_PAIR(17));
 	g.drawCharacter();
 	wattroff(win, COLOR_PAIR(17));
-wattron(win, COLOR_PAIR(16));
-	mvwprintw(gamescreen, 10, 10, "HELO");
-	g.drawCompleteBox();
-	wattroff(win, COLOR_PAIR(16));
 }

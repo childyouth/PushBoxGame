@@ -43,7 +43,7 @@ public:
     int getMapNum();
     int getLevel();
 	bool isBoxMoved();
-	bool isBoxOnDestination(int);
+	bool BoxOnDestination();
     
     void setWindow(WINDOW *&another);
 };
