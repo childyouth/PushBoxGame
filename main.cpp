@@ -190,6 +190,9 @@ void gameLoop(){
 			case 'q':
 				g.endGame(); wclear(gamescreen); g.levelUp(); return;
 			case 'r':
+				move_cnt = 0;
+				g.move_cnt = 0;
+				g.box_move_cnt=0;
 				g.newStage(g.getLevel()); break; // 자신의 레벨로 초기화
 		}
 		wclear(gamescreen);
