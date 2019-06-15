@@ -1,5 +1,9 @@
 #include "otobjects.h"
 
+vector<Box*> GameObject::boxes;	// 박스들
+vector<Destination*> GameObject::destinations; // 목적지
+Character GameObject::*character;
+
 int GameObject::move(int s,int c) {
 	if (!can_move)
 		return -1;
@@ -15,7 +19,28 @@ int Character::move(int s, int c){
 	default: cout << "1 : x+1 / 2 : x-1 / 3 : y+1 / 4 : y-1" << endl; return -2;
 	}
     
+	// for (int i = 0; i < GameObject::boxes.size(); i++) {
+	// 	if (boxes[i].p.col == x && boxes[i].p.row == y) {
+	// 		if (c == 2) {
+	// 			return -1;
+	// 		}
+	// 		if (boxes[i].move(s, 2) == 0) {
+	// 			p = point(x, y);
+	// 			return 0;
+	// 		}
+	// 		return -1;
+	// 	}
+	// }
+	// if (MAP[x][y].data == 0 || MAP[x][y].data == 3) {
+	// 	p = point(x, y);
+	// 	return 0;
+	// }
+	// else if (MAP[x][y].data == 1) {
+	// 	return -1;
+	// }
+	return 0;
 }
+    
 
 
 // int GameObject::move(int s,int c) {

@@ -12,9 +12,15 @@ class Box;
 
 class GameObject {
 public:
-	vector<Box> *boxes;	// 박스들
-	vector<Destination> *destinations; // 목적지
-	Character *character;
+	static vector<Box*> boxes;	// 박스들
+	static vector<Destination*> destinations; // 목적지
+	static Character *character;
+	
+	void reset(){
+		boxes = vector<Box*>();
+		destinations = vector<Destination*>();
+	}
+
 
 	point p; // 각 오브젝트들의 위치
 	bool can_move; // 이동 가능 객체인지 아닌지
@@ -22,10 +28,12 @@ public:
 	GameObject() {}
 	GameObject(int x, int y, int _data, bool _can_move = false) :p(point(x, y)), data(_data), can_move(_can_move) {}
 	GameObject(point p, int _data, bool _can_move = false) :p(p), data(_data), can_move(_can_move) {}
+	GameObject(const GameObject& g) :p(g.p), data(g.data), can_move(g.can_move) {}
 	virtual int move(int s,int c);
+	friend class game;
+	virtual point getPoint();
 	int getType(){ return data; }
-
-	bool isComplete();
+	bool isMovable() { return can_move; }
 
 	friend ostream& operator<<(ostream& o, const GameObject &obj) {
 		return o << obj.data;

@@ -1,6 +1,7 @@
 #ifndef GAME_H
 #define GAME_H
 #include "map.h"
+#include "otobjects.h"
 #include "point.h"
 #include <ncurses.h>
 
@@ -20,7 +21,7 @@ private:
     bool stageEnd = false;
 
     point size;
-	GameObject character;
+    GameObject objects;
     vector<vector<int> > currentMap;
 public:
     game(WINDOW*&);
@@ -28,16 +29,20 @@ public:
     void drawMap(); 
     void drawCharacter();
 	void drawBoxs(); // 미구현
+	void drawDestination(); 
     void levelUp();
-    GameObject getCharater();
+    // GameObject& getCharater();
     
     void endStage();
     void endGame();
     bool isStageEnd();
     bool isGameEnd();
-    int getMapNum();
+    int getMaxLevel();
     int getLevel();
+    Character* getCharacter() { return objects.character; };
     
+    void generateObjects();
+
     void setWindow(WINDOW *&another);
 };
 

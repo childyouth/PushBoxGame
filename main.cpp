@@ -151,11 +151,10 @@ void gameStart(int prefix){
 }
 void gameLoop(){
 	int a =0;
-	GameObject character = g.getCharater();
-	int c_x = character.p.col, c_y = character.p.row;
+	Character &character = g.getCharacter();
+
 	while(!g.isStageEnd()){
 		int key = getch();
-
 		switch(key){
 			case KEY_LEFT:
 				character.move(4,1);break;
@@ -169,14 +168,11 @@ void gameLoop(){
 				show_pause_screen(gamescreen);break;
 		}
 		draw(gamescreen);
-		wattron(gamescreen, COLOR_PAIR(3));
-		wattroff(gamescreen, COLOR_PAIR(3));
-
 		wrefresh(gamescreen);
 	}
 }
 void selectLevel(){
-	int key, level=0, maxLevel = g.getMapNum();
+	int key, level=0, maxLevel = g.getMaxLevel();
 
 	g.setWindow(levelSelect);
 	wbkgd(levelSelect,COLOR_PAIR(9));
@@ -223,7 +219,7 @@ void draw(WINDOW *win){
 	wattroff(win, COLOR_PAIR(17));
 
 	wattron(win, COLOR_PAIR(18));
-	//g.drawDestination();
+	g.drawDestination();
 	wattroff(win, COLOR_PAIR(18));
 
 	wattron(win, COLOR_PAIR(15));
