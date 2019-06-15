@@ -147,6 +147,12 @@ void lobbyFixedString(){
 	mvwprintw(gamescreen, 1, 3, "Hurry UP! ");
 	mvwprintw(gamescreen, 2, 3, "Level : ");
 	mvwprintw(gamescreen, 2, 11, temp);
+	sprintf(temp,"    move : %d",0);
+	mvwprintw(gamescreen,1,16,temp);
+	sprintf(temp, "box move : %d", g.box_move_cnt);
+	mvwprintw(gamescreen, 2, 16, temp);
+	mvwprintw(gamescreen, 1, 30, "quit : q or Q");
+	wattroff(gamescreen, COLOR_PAIR(3));
 	wattroff(gamescreen, COLOR_PAIR(3));
 }
 
@@ -188,7 +194,7 @@ void gameLoop(){
 			case 'p':
 				show_pause_screen(gamescreen);break;
 			case 'q':
-				g.endGame(); wclear(gamescreen); g.levelUp(); return;
+				g.endGame(); wclear(gamescreen); exit(1);
 			case 'r':
 				g.newStage(g.getLevel()); break; // 자신의 레벨로 초기화
 		}
@@ -199,15 +205,17 @@ void gameLoop(){
 				move_cnt ++;
 		}
 		g.move_cnt = move_cnt;
-		sprintf(temp,"%d",move_cnt);
+		sprintf(temp,"    move : %d",move_cnt);
 		
 		draw(gamescreen);
 		wattron(gamescreen, COLOR_PAIR(3));
-		mvwprintw(gamescreen,1,13,temp);
+		mvwprintw(gamescreen,1,16,temp);
 		g.isBoxMoved();
-		sprintf(temp, "%d", g.box_move_cnt);
-		mvwprintw(gamescreen, 1, 16, temp);
+		sprintf(temp, "box move : %d", g.box_move_cnt);
+		mvwprintw(gamescreen, 2, 16, temp);
 		
+		mvwprintw(gamescreen, 1, 30, "quit : q or Q");
+
 		wattroff(gamescreen, COLOR_PAIR(3));
 
 		wrefresh(gamescreen);
