@@ -19,6 +19,7 @@ void game::newStage(int level){
     size = maps.getMapSize(level);
     character = maps.getChracter(level);
     currentMap = maps.getMap(level);
+	character.setMAP(currentMap);
 }
 
 void game::drawMap(){

@@ -34,6 +34,31 @@ int GameObject::move(int s,int c) {
 	return 0;
 }
 
+void setMAP(vector<vector<int> > currentMap) {
+	GameObject::MAP = vector<vector<GameObject> >();
+	GameObject::boxes = vector<GameObject>();
+	GameObject::dest = vector<point>();
+	for (int i = 0; i < currentMap.size(); i++) {
+		vector<GameObject> tmp = vector<GameObject>();
+		for (int j = 0; j < currentMap[i].size(); i++) {
+			int n = currentMap[i][j];
+			if (n == 1 || n == 4)
+				tmp.push_back(GameObject(i, j, n));
+			else if (n == 2) {
+				tmp.push_back(GameObject(i, j, 0, true));
+				GameObject::boxes.push_back(GameObject(i, j, 2, true));
+				n = 0;
+			}
+			else {
+				if (n == 3)
+					GameObject::dest.push_back(point(i, j));
+				tmp.push_back(GameObject(i, j, n, true));
+			}
+		}
+		GameObject::MAP.push_back(tmp);
+	}
+}
+
 vector<vector<GameObject> > GameObject::MAP;
 vector<GameObject> GameObject::boxes;
 vector<point> GameObject::dest;

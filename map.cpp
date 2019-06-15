@@ -56,7 +56,6 @@ void map::setMap(int level, int col, int row, vector<string> temp) {
     vector<vector<int> > &map = maps[level];
     for (int i = 0; i < temp.size(); i++)
     {
-		vector<GameObject> tmp = vector<GameObject>();
         stringstream stream;
         stream.str(temp[i]);
         int idx = 0;
@@ -64,24 +63,10 @@ void map::setMap(int level, int col, int row, vector<string> temp) {
             if (tempString != " ") {
                 int n = atoi(tempString.c_str());
 
-				if (n == 1 || n == 4)
-					tmp.push_back(GameObject(i, idx, n));
-				else if (n == 2) {
-					tmp.push_back(GameObject(i, idx, 0, true));
-					GameObject::boxes.push_back(GameObject(i, idx, 2, true));
-					n = 0;
-				}
-				else {
-					if (n == 3)
-						GameObject::dest.push_back(point(i, idx));
-					tmp.push_back(GameObject(i, idx, n, true));
-				}
-
                 map[i][idx] = n;
                 idx++;
             }
         }
-		GameObject::MAP.push_back(tmp);
     }
     // checkMapData(level);
 }
