@@ -10,13 +10,13 @@ void handle_menu_cursor(int key, int &y); // 메인 메뉴에서 커서 이동
 void select_this_menu(int y); // Enter입력으로 메뉴에 따른 아이템 실행
 void show_pause_screen(WINDOW *win); // P를 눌렀을 시 Pause
 void gameStart(int prefix=0); // Main game loop로 들어감
-void gameLoop(int prefix);
+void gameLoop();
 void selectLevel();
 void draw(WINDOW *); // gameObjects 놈들 draw
 
 WINDOW *gamescreen, *pause, *levelSelect;
 game g(gamescreen);
-char temp[10];
+char temp[30];
 
 int main(){
 
@@ -55,6 +55,7 @@ int main(){
 		int key = getch();
 		if(key == 'q' || key == 'Q') break;
 		handle_menu_cursor(key, cursor_y);
+
 	}
 	
 	refresh();
@@ -122,34 +123,39 @@ void select_this_menu(int y){
 		selectLevel();
 	}
 }
+// 게임 로비에서 항상 출력되어야 하는 기본 세팅들
+void lobbyFixedString(){ 
+	wattron(gamescreen,COLOR_PAIR(1));
+	wborder(gamescreen,'0','0','0','0','0','0','0','0');
+	wattroff(gamescreen,COLOR_PAIR(1));
+	wattron(gamescreen, COLOR_PAIR(3));
+	sprintf(temp, "%d", g.getLevel()); // int -> string
+	mvwprintw(gamescreen, 1, 3, "Hurry UP! ");
+	mvwprintw(gamescreen, 2, 3, "Level : ");
+	mvwprintw(gamescreen, 2, 11, temp);
+	wattroff(gamescreen, COLOR_PAIR(3));
+}
+
 void gameStart(int prefix){
 	g.setWindow(gamescreen);
 
 	wbkgd(gamescreen,COLOR_PAIR(9));
-	wattron(gamescreen,COLOR_PAIR(1));
-	wborder(gamescreen,'0','0','0','0','0','0','0','0');
-	wattroff(gamescreen,COLOR_PAIR(1));
-		
-	while(!g.isGameEnd()){
-		g.newStage(prefix++);
-		// 게임 기본 세팅, 윈도우 생성, 맵 그리기
-		wattron(gamescreen, COLOR_PAIR(3));
-		sprintf(temp, "%d", g.getLevel()); // int -> string
-		mvwprintw(gamescreen, 1, 3, "Hurry UP! ");
-		mvwprintw(gamescreen, 2, 3, "Level : ");
-		mvwprintw(gamescreen, 2, 11, temp);
-		wattroff(gamescreen, COLOR_PAIR(3));
 
+	while(!g.isGameEnd()){
+		// prefix가 1일 시 levelselect를 통해서 온 것이므로 newStage가 불필요
+		if(!prefix) g.newStage();
+		// 게임 기본 세팅, 윈도우 생성, 맵 그리기
+		lobbyFixedString();
 		draw(gamescreen);
 		
 		wrefresh(gamescreen);
 		
 		// 메인 게임 루프실행
-		gameLoop(prefix-1);
+		gameLoop();
 		show_pause_screen(gamescreen);
 	}
 }
-void gameLoop(int prefix){
+void gameLoop(){
 	int a =0;
 	while(!g.isStageEnd()){
 		GameObject *character = &g.getCharater();
@@ -167,10 +173,12 @@ void gameLoop(int prefix){
 			case 'p':
 				show_pause_screen(gamescreen);break;
 			case 'q':
-				g.endGame(); wclear(gamescreen); return;
+				g.endGame(); wclear(gamescreen); g.levelUp(); return;
 			case 'r':
-				g.newStage(prefix); break;
+				g.newStage(g.getLevel()); break; // 자신의 레벨로 초기화
 		}
+		wclear(gamescreen);
+		lobbyFixedString();
 		draw(gamescreen);
 		wattron(gamescreen, COLOR_PAIR(3));
 		wattroff(gamescreen, COLOR_PAIR(3));
@@ -183,36 +191,40 @@ void selectLevel(){
 
 	g.setWindow(levelSelect);
 	wbkgd(levelSelect,COLOR_PAIR(9));
-	do{
+	while(key != 'q' || key != 'Q' || key != 10){
 		g.newStage(level);
+
 		wattron(levelSelect,COLOR_PAIR(1));
 		wborder(levelSelect,'0','0','0','0','0','0','0','0');
 		wattroff(levelSelect,COLOR_PAIR(1));
 
 		wattron(levelSelect, COLOR_PAIR(3));
-		sprintf(temp, "%d", level); // int -> string
-		mvwprintw(levelSelect, 1, 3, "Current Level : ");
-		mvwprintw(levelSelect, 1, 20, temp);
+		sprintf(temp, "Current Level %d", level); // int -> string
+		mvwprintw(levelSelect, 2, 3, temp);
 		wattroff(levelSelect, COLOR_PAIR(3));
-		
 		draw(levelSelect);
+
 		wrefresh(levelSelect);
-		
 		key = getch();
 		wclear(levelSelect);
-		if(key == KEY_LEFT || key == KEY_DOWN){
+		switch(key){
+			case KEY_LEFT:
+			case KEY_DOWN:
 			if(level>0) level--;
 			else mvwprintw(levelSelect, 2, 3, "This level is Min Level");
-		}
-		else if(key == KEY_RIGHT || key == KEY_UP){
+			break;
+			case KEY_RIGHT:
+			case KEY_UP:
 			if(level<maxLevel-1) level++;
 			else mvwprintw(levelSelect, 2, 3, "T his level is Max Level");
-		}
-		else if(key == 10){
 			break;
 		}
-	} while(key != 'q' || key != 'Q');
+		if(key == 10){
+			break;
+		}	
+	}
 	wclear(levelSelect);
+	wrefresh(levelSelect);
 	gameStart(1);
 }
 

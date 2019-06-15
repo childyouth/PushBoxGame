@@ -9,8 +9,8 @@ game::game(WINDOW *&win) {
 void game::newStage(int level){
     // 데이터 셋
     if (level >= maxLevel) {
-        char msg[] = "마지막 레벨입니다.";
-        mvwprintw(win, IN_WINDOW_Y, IN_WINDOW_X, msg);
+        char msg[] = "Last Level";
+        mvwprintw(win, IN_WINDOW_Y, IN_WINDOW_X+10, msg);
         gameEnd = true;
         return;
     }
