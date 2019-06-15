@@ -40,7 +40,7 @@ void GameObject::setMAP(vector<vector<int> > currentMap) {
 	GameObject::dest = vector<point>();
 	for (int i = 0; i < currentMap.size(); i++) {
 		vector<GameObject> tmp = vector<GameObject>();
-		for (int j = 0; j < currentMap[i].size(); i++) {
+		for (int j = 0; j < currentMap[i].size(); j++) {
 			int n = currentMap[i][j];
 			if (n == 1 || n == 4)
 				tmp.push_back(GameObject(i, j, n));
