@@ -48,8 +48,10 @@ int main(){
 		clear();
 		char c_y = (char)cursor_y + '0';
 		attron(COLOR_PAIR(2));
-		mvprintw(2, cursor_x, &c_y);
+		mvprintw(2, cursor_x, "PushBoxGame");
 		mvprintw(cursor_y, cursor_x, ">");
+		mvprintw(4, 4, "start game");
+		mvprintw(5, 4, "Choose Level");
 		attroff(COLOR_PAIR(2));
 		refresh();
 		
