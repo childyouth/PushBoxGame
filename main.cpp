@@ -131,8 +131,7 @@ void gameStart(int prefix){
 	wattroff(gamescreen,COLOR_PAIR(1));
 		
 	while(!g.isGameEnd()){
-		if(prefix==0) g.newStage(prefix);
-		prefix = 1;
+		g.newStage(prefix++);
 		// 게임 기본 세팅, 윈도우 생성, 맵 그리기
 		wattron(gamescreen, COLOR_PAIR(3));
 		sprintf(temp, "%d", g.getLevel()); // int -> string
@@ -146,7 +145,7 @@ void gameStart(int prefix){
 		wrefresh(gamescreen);
 		
 		// 메인 게임 루프실행
-		gameLoop(prefix);
+		gameLoop(prefix-1);
 		show_pause_screen(gamescreen);
 	}
 }
