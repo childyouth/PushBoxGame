@@ -44,7 +44,7 @@ void game::drawBoxs() {
 	}
 }
 void game::drawCharacter(){
-    mvwprintw(win, character.p.row+IN_WINDOW_Y, character.p.col+IN_WINDOW_X, "@");
+    mvwprintw(win, character.p.col+IN_WINDOW_Y, character.p.row+IN_WINDOW_X, "@");
 }
 void game::levelUp(){
     level++;

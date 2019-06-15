@@ -151,19 +151,19 @@ void gameStart(int prefix){
 }
 void gameLoop(){
 	int a =0;
-	GameObject character = g.getCharater();
+	GameObject *character = &g.getCharater();
 	while(!g.isStageEnd()){
 		int key = getch();
 
 		switch(key){
 			case KEY_LEFT:
-				character.move(4,1);break;
+				character->move(4,1);break;
 			case KEY_RIGHT:
-				character.move(3,1);break;
+				character->move(3,1);break;
 			case KEY_UP:
-				character.move(2,1);break;
+				character->move(2,1);break;
 			case KEY_DOWN:
-				character.move(1,1);break;
+				character->move(1,1);break;
 			case 'p':
 				show_pause_screen(gamescreen);break;
 		}
