@@ -48,8 +48,10 @@ int main(){
 		clear();
 		char c_y = (char)cursor_y + '0';
 		attron(COLOR_PAIR(2));
-		mvprintw(2, cursor_x, &c_y);
+		mvprintw(2, cursor_x, "PushBoxGame");
 		mvprintw(cursor_y, cursor_x, ">");
+		mvprintw(4, 4, "start game");
+		mvprintw(5, 4, "Choose Level");
 		attroff(COLOR_PAIR(2));
 		refresh();
 		
@@ -190,7 +192,11 @@ void gameLoop(){
 		
 		draw(gamescreen);
 		wattron(gamescreen, COLOR_PAIR(3));
-		mvwprintw(gamescreen,1,15,temp);
+		mvwprintw(gamescreen,1,13,temp);
+		g.isBoxMoved();
+		sprintf(temp, "%d", g.box_move_cnt);
+		mvwprintw(gamescreen, 1, 16, temp);
+		
 		wattroff(gamescreen, COLOR_PAIR(3));
 
 		wrefresh(gamescreen);

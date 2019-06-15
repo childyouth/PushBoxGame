@@ -14,6 +14,7 @@ void game::newStage(int level){
         gameEnd = true;
         return;
     }
+    move_cnt = 0;
     this->move_cnt = 0;
     this->level = level;
     stageEnd = false;
@@ -21,6 +22,7 @@ void game::newStage(int level){
     character = maps.getChracter(level);
     currentMap = maps.getMap(level);
 	character.setMAP(currentMap);
+	last_box = GameObject::boxes;
 }
 
 void game::drawMap(){
@@ -66,6 +68,17 @@ bool game::isStageEnd(){
 bool game::isGameEnd(){ return gameEnd; }
 GameObject& game::getCharater(){
     return character;
+}
+bool game::isBoxMoved() {
+	for (int i = 0; i < last_box.size(); i++) {
+		if (last_box[i].p.col != GameObject::boxes[i].p.col ||
+			last_box[i].p.row != GameObject::boxes[i].p.row) {
+			last_box = GameObject::boxes;
+			box_move_cnt++;
+			return true;
+		}
+	}
+	return false;
 }
 void game::setWindow(WINDOW *&another){ this->win = another; };
 int game::getMapNum(){ return maps.getMapNum(); };
