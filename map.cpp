@@ -45,7 +45,7 @@ void map::initMap()
 
         // cout << "row : " << map_sizes[i].row << " col : " << map_sizes[i].col << endl;
         if(i==0){ // map 초기화
-            maps.assign(num_maps, vector<vector<int> >(row, vector<int>(col, 0)));
+            maps.assign(num_maps, vector<vector<int> >(row, vector<int>()));
         }
         setMap(i, col, row, line);
     }
@@ -56,17 +56,15 @@ void map::setMap(int level, int col, int row, vector<string> temp) {
     vector<vector<int> > &map = maps[level];
     for (int i = 0; i < temp.size(); i++)
     {
-        stringstream stream;
-        stream.str(temp[i]);
-        int idx = 0;
-        while(stream >> tempString){
-            if (tempString != " ") {
-                int n = atoi(tempString.c_str());
-
-                map[i][idx] = n;
-                idx++;
-            }
+        for(int s=0; s<temp[i].size(); s++){
+            if(temp[i][s] == ' ') continue;
+            map[i].push_back(temp[i][s] - '0');
         }
+        // for(int s=0; s<map[i].size(); s++){
+        //     cout << map[i][s] << " ";
+        // }
+        // checkMapData(level);
+        // cout << endl;
     }
     // checkMapData(level);
 }
