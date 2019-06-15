@@ -23,6 +23,7 @@ private:
 	GameObject character;
     vector<vector<int> > currentMap;
 public:
+    int move_cnt = 0;
     game(WINDOW*&);
     void newStage(int level=0);
     void drawMap(); 

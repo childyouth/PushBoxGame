@@ -14,6 +14,7 @@ void game::newStage(int level){
         gameEnd = true;
         return;
     }
+    move_cnt = 0;
     this->level = level;
     stageEnd = false;
     size = maps.getMapSize(level);
