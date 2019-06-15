@@ -143,10 +143,10 @@ void gameStart(int prefix){
 	g.setWindow(gamescreen);
 
 	wbkgd(gamescreen,COLOR_PAIR(9));
-
+	int level = 0;
 	while(!g.isGameEnd()){
 		// prefix가 1일 시 levelselect를 통해서 온 것이므로 newStage가 불필요
-		if(!prefix) g.newStage();
+		if(!prefix) g.newStage(level++);
 		// 게임 기본 세팅, 윈도우 생성, 맵 그리기
 		lobbyFixedString();
 		draw(gamescreen);
