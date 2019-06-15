@@ -29,7 +29,7 @@ void game::drawMap(){
         char ctemp[2];
         for(int col=0;col<size.col;col++){
         // cout << "row : " << size.row << " col : " << size.col << endl;
-            sprintf(ctemp, "%d", GameObject[row][col].data);
+            sprintf(ctemp, "%d", GameObject::MAP[row][col].data);
             mvwprintw(win, row+IN_WINDOW_Y, col+IN_WINDOW_X, ctemp);
         }
     }
