@@ -30,7 +30,8 @@ public:
     void newStage(int level=0);
     void drawMap(); 
     void drawCharacter();
-	void drawBoxs(); // 미구현
+	void drawBoxs(); 
+	void drawDestination();
     void levelUp();
     GameObject& getCharater();
     

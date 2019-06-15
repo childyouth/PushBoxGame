@@ -46,6 +46,12 @@ void game::drawBoxs() {
 			, GameObject::boxes[i].p.row + IN_WINDOW_X, "2");
 	}
 }
+void game::drawDestination() {
+	for (int i = 0; i < GameObject::dest.size(); i++) {
+		mvwprintw(win, GameObject::dest[i].col + IN_WINDOW_Y
+			, GameObject::dest[i].row + IN_WINDOW_X, "3");
+	}
+}
 void game::drawCharacter(){
     mvwprintw(win, character.p.col+IN_WINDOW_Y, character.p.row+IN_WINDOW_X, "@");
 }
@@ -67,6 +73,7 @@ bool game::isBoxMoved() {
 	for (int i = 0; i < last_box.size(); i++) {
 		if (last_box[i].p.col != GameObject::boxes[i].p.col ||
 			last_box[i].p.row != GameObject::boxes[i].p.row) {
+			last_box = GameObject::boxes;
 			box_move_cnt++;
 			return true;
 		}
