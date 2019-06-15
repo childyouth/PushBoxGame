@@ -52,6 +52,12 @@ void game::drawDestination() {
 			, GameObject::dest[i].row + IN_WINDOW_X, "3");
 	}
 }
+void game::drawCompleteBox() {
+	for (int i = 0; i < GameObject::complete.size(); i++) {
+		mvwprintw(win, GameObject::complete[i].col + IN_WINDOW_Y
+			, GameObject::complete[i].row + IN_WINDOW_X, "2");
+	}
+}
 void game::drawCharacter(){
     mvwprintw(win, character.p.col+IN_WINDOW_Y, character.p.row+IN_WINDOW_X, "@");
 }
@@ -70,16 +76,28 @@ GameObject& game::getCharater(){
     return character;
 }
 bool game::isBoxMoved() {
+    // GameObject::complete = vector<point>();
 	for (int i = 0; i < last_box.size(); i++) {
 		if (last_box[i].p.col != GameObject::boxes[i].p.col ||
 			last_box[i].p.row != GameObject::boxes[i].p.row) {
 			last_box = GameObject::boxes;
 			box_move_cnt++;
+            // if(isBoxOnDestination(i)){
+            //     GameObject::complete.push_back(last_box[i].p);
+            // }E
 			return true;
 		}
 	}
 	return false;
 }
+// bool game::isBoxOnDestination(int idx){
+//     for (int i = 0; i < GameObject::dest.size(); i++) {
+//         if(GameObject::dest[i].col == GameObject::boxes[i].p.col &&
+//            GameObject::dest[i].row == GameObject::boxes[i].p.row)
+//            return true;
+//         }
+// 	return false;
+// }
 void game::setWindow(WINDOW *&another){ this->win = another; };
 int game::getMapNum(){ return maps.getMapNum(); };
 int game::getLevel(){ return level; };

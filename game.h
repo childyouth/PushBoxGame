@@ -32,6 +32,7 @@ public:
     void drawCharacter();
 	void drawBoxs(); 
 	void drawDestination();
+	void drawCompleteBox();
     void levelUp();
     GameObject& getCharater();
     
@@ -42,6 +43,7 @@ public:
     int getMapNum();
     int getLevel();
 	bool isBoxMoved();
+	bool isBoxOnDestination(int);
     
     void setWindow(WINDOW *&another);
 };

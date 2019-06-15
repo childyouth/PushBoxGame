@@ -10,7 +10,7 @@ public:
 	static vector<vector<GameObject> > MAP;	// ���� ��
 	static vector<GameObject> boxes;	// �ڽ�
 	static vector<point> dest;			// �ڽ��� ������
-	// static vector<point> dest;		
+	static vector<point> complete;		
 	point p;
 	bool can_move;
 	int data;

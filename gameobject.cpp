@@ -62,6 +62,7 @@ void GameObject::setMAP(vector<vector<int> > currentMap) {
 vector<vector<GameObject> > GameObject::MAP;
 vector<GameObject> GameObject::boxes;
 vector<point> GameObject::dest;
+vector<point> GameObject::complete;
 
 bool GameObject::is_clear() {
 	for (int i = 0; i < GameObject::boxes.size(); i++) {

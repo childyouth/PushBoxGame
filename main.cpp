@@ -78,7 +78,7 @@ void init_colors(){
 	init_pair(11, COLOR_RED, COLOR_RED); // pause background color
 
 	init_pair(15, COLOR_GREEN, COLOR_BLACK); // box color
-	init_pair(16, COLOR_CYAN, COLOR_BLACK); // complete box color
+	init_pair(16, COLOR_YELLOW, COLOR_BLACK); // complete box color
 	init_pair(17, COLOR_RED, COLOR_BLACK); // character color
 	init_pair(18, COLOR_BLUE, COLOR_BLACK); // destination color
 
@@ -253,11 +253,17 @@ void draw(WINDOW *win){
 	g.drawDestination();
 	wattroff(win, COLOR_PAIR(18));
 
-	wattron(win, COLOR_PAIR(17));
-	g.drawCharacter();
-	wattroff(win, COLOR_PAIR(17));
-
 	wattron(win, COLOR_PAIR(15));
 	g.drawBoxs();
 	wattroff(win, COLOR_PAIR(15));
+
+	
+
+	wattron(win, COLOR_PAIR(17));
+	g.drawCharacter();
+	wattroff(win, COLOR_PAIR(17));
+wattron(win, COLOR_PAIR(16));
+	mvwprintw(gamescreen, 10, 10, "HELO");
+	g.drawCompleteBox();
+	wattroff(win, COLOR_PAIR(16));
 }
