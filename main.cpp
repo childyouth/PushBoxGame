@@ -191,7 +191,7 @@ void gameLoop(){
 		draw(gamescreen);
 		wattron(gamescreen, COLOR_PAIR(3));
 		mvwprintw(gamescreen,1,13,temp);
-		g.isBoxMoved()
+		g.isBoxMoved();
 		sprintf(temp, "%d", g.box_move_cnt);
 		mvwprintw(gamescreen, 1, 16, temp);
 		

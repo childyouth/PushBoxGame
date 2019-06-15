@@ -67,6 +67,7 @@ bool game::isBoxMoved() {
 	for (int i = 0; i < last_box.size(); i++) {
 		if (last_box[i].p.col != GameObject::boxes[i].p.col ||
 			last_box[i].p.row != GameObject::boxes[i].p.row) {
+			last_box = GameObject::boxes;
 			box_move_cnt++;
 			return true;
 		}
