@@ -29,18 +29,18 @@ void game::drawMap(){
         char ctemp[2];
         for(int col=0;col<size.col;col++){
         // cout << "row : " << size.row << " col : " << size.col << endl;
-            sprintf(ctemp, "%d", currentMap[row][col]);
+            sprintf(ctemp, "%d", GameObject[row][col].data);
             mvwprintw(win, row+IN_WINDOW_Y, col+IN_WINDOW_X, ctemp);
         }
     }
 
-    drawBoxs();  
-    drawCharacter();
+    //drawBoxs();  
+    //drawCharacter();
 }
 void game::drawBoxs() {
 	for (int i = 0; i < GameObject::boxes.size(); i++) {
-		mvwprintw(win, GameObject::boxes[i].p.row + IN_WINDOW_Y
-			, GameObject::boxes[i].p.col + IN_WINDOW_X, "2");
+		mvwprintw(win, GameObject::boxes[i].p.col + IN_WINDOW_Y
+			, GameObject::boxes[i].p.row + IN_WINDOW_X, "2");
 	}
 }
 void game::drawCharacter(){
