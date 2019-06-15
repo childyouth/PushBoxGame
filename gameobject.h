@@ -7,9 +7,10 @@
 using namespace std;
 class GameObject {
 public:
-	static vector<vector<GameObject> > MAP;	// ÇöÀç ¸Ê
-	static vector<GameObject> boxes;	// ¹Ú½º
-	static vector<point> dest;			// ¹Ú½ºÀÇ µµÂøÁö
+	static vector<vector<GameObject> > MAP;	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+	static vector<GameObject> boxes;	// ï¿½Ú½ï¿½
+	static vector<point> dest;			// ï¿½Ú½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	// static vector<point> dest;		
 	point p;
 	bool can_move;
 	int data;

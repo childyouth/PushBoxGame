@@ -8,7 +8,7 @@
 void init_colors();
 void handle_menu_cursor(int key, int &y); // 메인 메뉴에서 커서 이동
 void select_this_menu(int y); // Enter입력으로 메뉴에 따른 아이템 실행
-void show_pause_screen(WINDOW *win); // P를 눌렀을 시 Pause
+void show_pause_screen(WINDOW *win, string message="  Press Any KEY To\n      CONTINUE"); // P를 눌렀을 시 Pause
 void gameStart(int prefix=0); // Main game loop로 들어감
 void gameLoop();
 void selectLevel();
@@ -100,10 +100,10 @@ void handle_menu_cursor(int key, int &y){
 			break;
 	}	
 }
-void show_pause_screen(WINDOW *win){
+void show_pause_screen(WINDOW *win, string message){
 	wbkgd(pause,COLOR_PAIR(11));
 	wattron(pause,COLOR_PAIR(21));
-	mvwprintw(pause,1,1,"  Press Any KEY To\n      CONTINUE");
+	mvwprintw(pause,1,1,message.c_str());
 	wattroff(pause,COLOR_PAIR(21));
 	wattron(pause,COLOR_PAIR(1));
 	wborder(pause,'0','0','0','0','0','0','0','0');
@@ -153,7 +153,7 @@ void gameStart(int prefix){
 		
 		// 메인 게임 루프실행
 		gameLoop();
-		show_pause_screen(gamescreen);
+		show_pause_screen(gamescreen, "   Game Clear!!\n  Press Any KEY To\n      CONTINUE");
 	}
 }
 void gameLoop(){
@@ -242,13 +242,14 @@ void draw(WINDOW *win){
 	wattron(win, COLOR_PAIR(3));
 	g.drawMap();
 	wattroff(win, COLOR_PAIR(3));
-	
+
+	wattron(win, COLOR_PAIR(18));
+	g.drawDestination();
+	wattroff(win, COLOR_PAIR(18));
+
 	wattron(win, COLOR_PAIR(17));
 	g.drawCharacter();
 	wattroff(win, COLOR_PAIR(17));
-
-	wattron(win, COLOR_PAIR(18));
-	wattroff(win, COLOR_PAIR(18));
 
 	wattron(win, COLOR_PAIR(15));
 	g.drawBoxs();
