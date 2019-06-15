@@ -126,7 +126,7 @@ void gameStart(int prefix){
 	g.setWindow(gamescreen);
 		
 	while(!g.isGameEnd()){
-		if(prefix==0) g.newStage();
+		if(prefix==0) g.newStage(prefix);
 		prefix = 1;
 		// 게임 기본 세팅, 윈도우 생성, 맵 그리기
 		wbkgd(gamescreen,COLOR_PAIR(9));
@@ -147,6 +147,7 @@ void gameStart(int prefix){
 		
 		// 메인 게임 루프실행
 		gameLoop();
+		show_pause_screen(gamescreen);
 	}
 }
 void gameLoop(){

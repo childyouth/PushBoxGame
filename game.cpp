@@ -52,7 +52,10 @@ void game::levelUp(){
 }
 void game::endStage(){ stageEnd = true; }
 void game::endGame(){ gameEnd = true; }
-bool game::isStageEnd(){ return stageEnd; }
+bool game::isStageEnd(){
+	stageEnd = character.is_clear();
+	return stageEnd;
+}
 bool game::isGameEnd(){ return gameEnd; }
 GameObject& game::getCharater(){
     return character;

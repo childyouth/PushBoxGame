@@ -63,7 +63,7 @@ vector<vector<GameObject> > GameObject::MAP;
 vector<GameObject> GameObject::boxes;
 vector<point> GameObject::dest;
 
-bool is_clear() {
+bool GameObject::is_clear() {
 	for (int i = 0; i < GameObject::boxes.size(); i++) {
 		for (int j = 0; j < GameObject::dest.size(); j++) {
 			if (GameObject::dest[j].col == GameObject::boxes[i].p.col &&

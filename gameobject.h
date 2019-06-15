@@ -21,6 +21,7 @@ public:
 
 	}
 	int move(int s,int c);
+	bool is_clear();
 	void setMAP(vector<vector<int> > currentMap);
 	friend ostream& operator<<(ostream& o, const GameObject &obj) {
 		return o << obj.data;
