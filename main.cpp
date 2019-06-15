@@ -10,7 +10,7 @@ void handle_menu_cursor(int key, int &y); // 메인 메뉴에서 커서 이동
 void select_this_menu(int y); // Enter입력으로 메뉴에 따른 아이템 실행
 void show_pause_screen(WINDOW *win); // P를 눌렀을 시 Pause
 void gameStart(int prefix=0); // Main game loop로 들어감
-void gameLoop();
+void gameLoop(int prefix);
 void selectLevel();
 void draw(WINDOW *); // gameObjects 놈들 draw
 
@@ -124,16 +124,16 @@ void select_this_menu(int y){
 }
 void gameStart(int prefix){
 	g.setWindow(gamescreen);
+
+	wbkgd(gamescreen,COLOR_PAIR(9));
+	wattron(gamescreen,COLOR_PAIR(1));
+	wborder(gamescreen,'0','0','0','0','0','0','0','0');
+	wattroff(gamescreen,COLOR_PAIR(1));
 		
 	while(!g.isGameEnd()){
 		if(prefix==0) g.newStage(prefix);
 		prefix = 1;
 		// 게임 기본 세팅, 윈도우 생성, 맵 그리기
-		wbkgd(gamescreen,COLOR_PAIR(9));
-		wattron(gamescreen,COLOR_PAIR(1));
-		wborder(gamescreen,'0','0','0','0','0','0','0','0');
-		wattroff(gamescreen,COLOR_PAIR(1));
-		
 		wattron(gamescreen, COLOR_PAIR(3));
 		sprintf(temp, "%d", g.getLevel()); // int -> string
 		mvwprintw(gamescreen, 1, 3, "Hurry UP! ");
@@ -146,14 +146,14 @@ void gameStart(int prefix){
 		wrefresh(gamescreen);
 		
 		// 메인 게임 루프실행
-		gameLoop();
+		gameLoop(prefix);
 		show_pause_screen(gamescreen);
 	}
 }
-void gameLoop(){
+void gameLoop(int prefix){
 	int a =0;
-	GameObject *character = &g.getCharater();
 	while(!g.isStageEnd()){
+		GameObject *character = &g.getCharater();
 		int key = getch();
 
 		switch(key){
@@ -167,6 +167,10 @@ void gameLoop(){
 				character->move(1,1);break;
 			case 'p':
 				show_pause_screen(gamescreen);break;
+			case 'q':
+				g.endGame(); wclear(gamescreen); return;
+			case 'r':
+				g.newStage(prefix); break;
 		}
 		draw(gamescreen);
 		wattron(gamescreen, COLOR_PAIR(3));
