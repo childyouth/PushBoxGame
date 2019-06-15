@@ -29,7 +29,7 @@ public:
     void drawCharacter();
 	void drawBoxs(); // 미구현
     void levelUp();
-    GameObject getCharater();
+    GameObject& getCharater();
     
     void endStage();
     void endGame();

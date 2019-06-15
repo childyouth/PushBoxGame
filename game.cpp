@@ -54,7 +54,7 @@ void game::endStage(){ stageEnd = true; }
 void game::endGame(){ gameEnd = true; }
 bool game::isStageEnd(){ return stageEnd; }
 bool game::isGameEnd(){ return gameEnd; }
-GameObject game::getCharater(){
+GameObject& game::getCharater(){
     return character;
 }
 void game::setWindow(WINDOW *&another){ this->win = another; };

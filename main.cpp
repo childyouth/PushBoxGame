@@ -151,7 +151,7 @@ void gameStart(int prefix){
 }
 void gameLoop(){
 	int a =0;
-	GameObject &character = g.getCharater();
+	GameObject character = g.getCharater();
 	while(!g.isStageEnd()){
 		int key = getch();
 
