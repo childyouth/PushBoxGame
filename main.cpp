@@ -37,6 +37,7 @@ int main(){
 
 	keypad(stdscr,TRUE);
 	curs_set(0);
+	// echo();
 	noecho();
 	
 	// 로비 띄우기
